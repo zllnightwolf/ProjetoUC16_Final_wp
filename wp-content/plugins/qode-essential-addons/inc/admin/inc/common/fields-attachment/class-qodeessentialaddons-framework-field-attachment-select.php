@@ -1,0 +1,22 @@
+<?php
+
+class QodeEssentialAddons_Framework_Field_Attachment_Select extends QodeEssentialAddons_Framework_Field_Attachment_Type {
+
+	function __construct( $params ) {
+		parent::__construct( $params );
+	}
+
+	public function render() {
+		$html  = '';
+		$html .= '<select name="' . $this->name . '">';
+		foreach ( $this->options as $key => $label ) {
+			$selected = $this->params['value'] == $key ? ' selected="selected"' : '';
+			$html     .= '<option' . esc_attr( $selected ) . ' value="' . esc_attr( $key ) . '">';
+			$html     .= esc_html( $label );
+			$html     .= '</option>';
+		}
+		$html .= '</select>';
+
+		$this->form_fields['html'] = $html;
+	}
+}
